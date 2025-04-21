@@ -60,8 +60,8 @@ export default function Forms_box() {
 
                 <form onSubmit={handleSubmit} className="forms-box-form-input">
                     <input type="text" name="name" placeholder={formData.forms_box_placeholder1} value={formFields.name} onChange={handleChange} className="form-input" />
-                    <input type="text" name="phone" placeholder={formData.forms_box_placeholder2} value={formFields.email} onChange={handleChange} className="form-input" />
-                    <input type="text" name="email" placeholder={formData.forms_box_placeholder3} value={formFields.phone} onChange={handleChange} className="form-input" />
+                    <input type="text" name="phone" placeholder={formData.forms_box_placeholder2} value={formFields.phone} onChange={handleChange} className="form-input" />
+                    <input type="text" name="email" placeholder={formData.forms_box_placeholder3} value={formFields.email} onChange={handleChange} className="form-input" />
                     <input type="text" name="message" placeholder={formData.forms_box_placeholder4} value={formFields.message} onChange={handleChange} className="form-input" />
 
                     <div className="forms-box-form-security">
