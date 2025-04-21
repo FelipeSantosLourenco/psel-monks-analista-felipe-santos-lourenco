@@ -271,8 +271,9 @@ html {
 
 .app-section-button {
   border: none;
-  padding: 0;
+  padding: 0 1rem;
   cursor: pointer;
+  background-color: #3C0C60;
 }
 
 .app-section-button img {
