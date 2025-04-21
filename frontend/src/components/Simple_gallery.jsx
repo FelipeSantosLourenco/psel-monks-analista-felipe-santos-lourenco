@@ -1,59 +1,65 @@
-import primaryPic from "../assets/simple_gallery/primary.png";
-import secundaryPic1 from "../assets/simple_gallery/secundary.png";
-import secundaryPic2 from "../assets/simple_gallery/secundary_.png";
+import { useEffect, useState } from 'react'
+import { fetchPageData } from '../api/api.js'
 
 export default function SimpleGallery() {
-    const images = [
-        {
-            id: 1,
-            src: primaryPic,
-            alt: "Imagem 1",
-        },
-        {
-            id: 2,
-            src: secundaryPic1,
-            alt: "Imagem 2",
-        },
-        {
-            id: 3,
-            src: secundaryPic2,
-            alt: "Imagem 3",
-        },
-    ];
+  const [galleryData, setGalleryData] = useState(null)
 
-    return (
-        <section className="bg-[#eae8e4] py-12">
-            <div className="max-w-screen-xl mx-auto px-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await fetchPageData('monks')
+      setGalleryData(data)
+    }
 
-                    <div className="flex flex-col gap-6">
-                        <div className="text-left mb-8">
-                            <h2 className="text-3xl font-bold text-gray-800">
-                                Lorem ipsum dolor sit amet consectetur
-                            </h2>
-                            <p className="text-gray-600">
-                                Lorem ipsum dolor sit amet consectetur. Semper orci adipiscing faucibus sit scelerisque quis commodo.
-                            </p>
-                        </div>
-                        <img
-                            src={images[0].src}
-                            alt={images[0].alt}
-                            className="w-full h-auto rounded-lg shadow-md object-cover"
-                        />
-                    </div>
+    fetchData()
+  }, [])
 
-                    <div className="grid grid-rows-2 gap-6">
-                        {images.slice(1).map((image) => (
-                            <img
-                                key={image.id}
-                                src={image.src}
-                                alt={image.alt}
-                                className="w-full h-auto rounded-lg shadow-md object-cover"
-                            />
-                        ))}
-                    </div>
-                </div>
+  if (!galleryData) return null
+
+  const images = [
+    {
+      id: 1,
+      src: galleryData.simple_gallery_primary_image,
+      alt: 'Imagem principal'
+    },
+    {
+      id: 2,
+      src: galleryData.simple_gallery_secundary_image1,
+      alt: 'Imagem secundária 1'
+    },
+    {
+      id: 3,
+      src: galleryData.simple_gallery_secundary_image2,
+      alt: 'Imagem secundária 2'
+    }
+  ]
+
+  return (
+    <section className="gallery-section">
+      <div className="gallery-container">
+        <div className="gallery-grid">
+          <div className="gallery-left">
+            <div className="gallery-text">
+              <h2>{galleryData.simple_gallery_title}</h2>
+              <p>{galleryData.simple_gallery_subtitle}</p>
             </div>
-        </section>
-    )
-}   
+            <img
+              src={images[0].src}
+              alt={images[0].alt}
+              className="gallery-image"
+            />
+          </div>
+          <div className="gallery-right">
+            {images.slice(1).map((image) => (
+              <img
+                key={image.id}
+                src={image.src}
+                alt={image.alt}
+                className="gallery-image"
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
