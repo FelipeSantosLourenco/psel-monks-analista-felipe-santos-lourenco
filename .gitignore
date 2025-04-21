@@ -35,3 +35,8 @@ dist-ssr
 
 # Ignore sensitive files
 wp-config.php
+
+/backend/psel-monks-analista-felipe-santos-lourenco/vendor/symfony/polyfill-ctype/
+backend/psel-monks-analista-felipe-santos-lourenco/vendor/symfony/polyfill-mbstring/
+backend/psel-monks-analista-felipe-santos-lourenco/vendor/symfony/polyfill-php80/
+
